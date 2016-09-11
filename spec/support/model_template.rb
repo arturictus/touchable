@@ -1,8 +1,7 @@
-class User
+class ModelTemplate
   extend ActiveModel::Callbacks
 
   define_model_callbacks :update
-  include Touchable
 
   def update
     run_callbacks :update do
@@ -11,5 +10,11 @@ class User
   end
 
   def touch
+    @updated_at = nil
+    true
+  end
+
+  def updated_at
+    @updated_at ||= Time.now
   end
 end
